@@ -1,31 +1,34 @@
-<div>
-    <img src="https://th.bing.com/th/id/R.c1e511a0590457c1a980343d52544e93?rik=I0uMysauOAytOQ&pid=ImgRaw&r=0" alt="Imagen login">
-</div>
-<div class="container">
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-        <h2>Iniciar sesión</h2>
-        <div class="label-input">
-            <label for="userName">Nombre de usuario</label>
-            <input id="userName" name="userName" type="text" ngModel #userName="ngModel" required="true" autocomplete="userName">
-            @if (userName.invalid && !userName.pristine) {
+<div class="d-flex">
+    <img src="https://thumbs.dreamstime.com/b/vertical-de-mesa-con-platos-y-gafas-en-un-restaurante-una-vasos-261724936.jpg"
+        alt="Imagen login" class="w-50 h-100">
+    <div class="m-0">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <h2>Iniciar sesión</h2>
+            <div class="label-input">
+                <label for="userName">Nombre de usuario</label>
+                <input id="userName" name="userName" type="text" ngModel #userName="ngModel" required="true"
+                    autocomplete="userName">
+                @if (userName.invalid && !userName.pristine) {
                 <p class="error">Debe colocar un mail.</p>
-            }
-        </div>
-        <div class="label-input">
-            <label for="password">Contraseña</label>
-            <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="4" autocomplete="current-password">
-            @if (password.invalid && !password.pristine) {
+                }
+            </div>
+            <div class="label-input">
+                <label for="password">Contraseña</label>
+                <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="4"
+                    autocomplete="current-password">
+                @if (password.invalid && !password.pristine) {
                 <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
-            }
-        </div>
-        <button>Entrar</button>
-        @if(isLoading){
+                }
+            </div>
+            <button>Entrar</button>
+            @if(isLoading){
             <!-- <app-spinner></app-spinner> -->
-        }
-        @if (errorLogin) {
+            }
+            @if (errorLogin) {
             <p class="error">Error indeterminado, intente nuevamente.</p>
-        } 
-        <p>¿No tenés cuenta?</p>
-        <a routerLink="/register">Registrate</a>
-    </form>
+            }
+            <p>¿No tenés cuenta?</p>
+            <a routerLink="/register">Registrate</a>
+        </form>
+    </div>
 </div>
