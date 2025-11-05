@@ -14,7 +14,15 @@ export const routes: Routes = [
             path: "",
             component: Home,
 
-        },]
+        },
+        {
+            path: "menus",
+            component: Menu,
+        },
+        {
+        path: "bar-manager",
+        component: BarManager,
+    },]
     },
     {
         path: "register",
@@ -23,13 +31,5 @@ export const routes: Routes = [
     {
         path: "login",
         component: Login,
-    },
-    {
-        path: "bar-manager",
-        component: BarManager,
-    },
-    {
-        path: "menus",
-        component: Menu,
     },
 ];
