@@ -4,11 +4,17 @@ import { Register } from './pages/register/register';
 import { Login } from './pages/login/login';
 import { BarManager } from './pages/bar-manager/bar-manager';
 import { Menu } from './pages/menu/menu';
+import { Header } from './layauot/header/header';
 
 export const routes: Routes = [
     {
         path: "",
-        component: Home,
+        component: Header,
+        children: [{
+            path: "",
+            component: Home,
+
+        },]
     },
     {
         path: "register",
