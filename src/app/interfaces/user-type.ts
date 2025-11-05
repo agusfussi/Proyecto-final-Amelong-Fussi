@@ -1,9 +1,11 @@
 export interface UserType {
     id: string,
-    userName: string,
     restaurantName: string,
-    email: string,
+    firstName: string,
+    lastName:string,
     address: string,
     password: string,
-    number: string,
+    phoneNumber: string,
 }
+
+export type NewUserType = Omit<UserType,"id">

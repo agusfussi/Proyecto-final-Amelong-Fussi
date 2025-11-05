@@ -7,10 +7,10 @@ import { AuthType } from '../interfaces/auth-type';
 })
 export class AuthService {
   router = inject(Router);
-  token : null|string = localStorage.getItem("token");
+  token : null|string = null;
 
   async login(loginData: AuthType){
-    const res = await fetch("https://restaurant-api.somee.com/api/authentication/login",{
+    const res = await fetch("https://w370351.ferozo.com/api/Authentication/login",{
       method: "POST",
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(loginData)

@@ -10,11 +10,11 @@
                     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
                         <h2 class="text-center fw-bold mb-4">Iniciar sesión</h2>
                         <div class="mb-2">
-                            <label for="userName" class="form-label">Nombre de usuario</label>
+                            <label for="userName" class="form-label">Nombre de restaurante</label>
                             <input id="userName" class="form-control" name="userName" type="text" ngModel #userName="ngModel" required="true"
                                 autocomplete="userName">
                             @if (userName.invalid && !userName.pristine) {
-                            <p class="text-danger fs-6 mt-2">Debe colocar un mail.</p>
+                            <p class="text-danger fs-6 mt-2">Debe colocar un nombre.</p>
                             }
                         </div>
                         <div>
