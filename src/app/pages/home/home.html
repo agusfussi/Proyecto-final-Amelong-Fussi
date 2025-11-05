@@ -1,63 +1,81 @@
 <header></header>
-<div class="cards-conteiner flex-row">
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner flex-row m-0">
-            <div class="carousel-item active m-0" data-bs-interval="10000" class="card" style="width: 18rem;">
+<!--<div class="cards-conteiner flex-row">-->
+<div class="container my-5">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+        <div class="carousel-inner rounded-4 shadow-sm overflow-hidden">
+            <div class="carousel-item active" data-bs-interval="10000">
                 <img src="https://th.bing.com/th/id/R.a5fce7a7e94ac8a6287016f65bd3b7de?rik=SAhgytpEo97kZg&pid=ImgRaw&r=0"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s
-                        content.</p>
-                    <button type="button" class="btn btn-primary">Primary</button>
+                    class="d-block w-100 rounded-4" alt="Restaurante">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                    <h5>Nombre Restaurante</h5>
+                    <p>Texto Ejemplo</p>
                 </div>
             </div>
-            <div class="carousel-item active m-0" data-bs-interval="10000" class="card" style="width: 18rem;">
-                <img src="https://okdiario.com/coolthelifestyle/img/2023/01/16/image-1.jpg" class="card-img-top"
-                    alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s
-                        content.</p>
-                    <button type="button" class="btn btn-primary">Primary</button>
+            <div class="carousel-item" data-bs-interval="10000">
+                <img src="https://okdiario.com/coolthelifestyle/img/2023/01/16/image-1.jpg"
+                    class="d-block w-100 rounded-4" alt="Cocina">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                    <h5>Card title</h5>
+                    <p>Texto Ejemplo</p>
                 </div>
             </div>
-            <div class="carousel-item active m-0" data-bs-interval="10000" class="card" style="width: 18rem;">
+            <div class="carousel-item m-0" data-bs-interval="10000">
                 <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/loscabosmx/cafe_desartistes_restaurante_5_020d8733-39f3-4414-85e5-70d97e74ec28.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s
-                        content.</p>
-                    <button type="button" class="btn btn-primary">Primary</button>
+                    class="d-block w-100 rounded-4" alt="Restaurante de lujo">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded-3 p-3">
+                    <h5>Nombre Restaurante</h5>
+                    <p>Texto Ejemplo</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
     </div>
-
-</div>
-<div class="">
-    <h3 class="text-center">Listado de Restaurantes</h3>
-    <div class="restorants">
-        <div>
-            <p>Restaurante1</p>
+    <!--Listado-->
+    <div class="mt-4">
+        <h3 class="text-center mb-4 fw-semibold">Listado de Restaurantes</h3>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/loscabosmx/cafe_desartistes_restaurante_5_020d8733-39f3-4414-85e5-70d97e74ec28.jpg" alt="">
+                    <div class="card-body">
+                        <p class="card-title">Restaurante1</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center">
+                        <button class="btn btn-dark">Ver más</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c" alt="">
+                    <div class="card-body">
+                        <p class="card-title">Restaurante2</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center">
+                        <button class="btn btn-dark">Ver más</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://th.bing.com/th/id/R.a5fce7a7e94ac8a6287016f65bd3b7de?rik=SAhgytpEo97kZg&pid=ImgRaw&r=0" alt="">
+                    <div class="card-body">
+                        <p class="card-title">Restaurante3</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center">
+                        <button class="btn btn-dark">Ver más</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <p>Restaurante2</p>
-        </div>
-    </div>
-</div>
-<a routerLink="/login">Iniciar sesión</a>
+        <a routerLink="/login">Iniciar sesión</a>
+        
