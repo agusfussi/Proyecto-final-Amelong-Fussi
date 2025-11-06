@@ -8,6 +8,7 @@ import { AuthType } from '../interfaces/auth-type';
 export class AuthService {
   router = inject(Router);
   token : null|string = null;
+  id: number | undefined = undefined;
 
   async login(loginData: AuthType){
     const res = await fetch("https://w370351.ferozo.com/api/Authentication/login",{
@@ -19,7 +20,8 @@ export class AuthService {
     if(res.ok){
       this.token = await res.text()
       localStorage.setItem("token",this.token);
-      this.router.navigate(["/"])
+      this.id = this.getUserId()
+      this.router.navigate(["/",this.id])
     }
   }
 
@@ -41,6 +43,6 @@ export class AuthService {
   logout(){
     this.token = null;
     localStorage.removeItem("token")
-    this.router.navigate(["/login"])
+    this.router.navigate(["/"])
   }
 }

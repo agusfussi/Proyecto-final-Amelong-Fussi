@@ -5,6 +5,7 @@ import { Login } from './pages/login/login';
 import { BarManager } from './pages/bar-manager/bar-manager';
 import { Menu } from './pages/menu/menu';
 import { Header } from './layauot/header/header';
+import { LoggedHeader } from './layauot/logged-header/logged-header';
 
 export const routes: Routes = [
     {
@@ -13,16 +14,11 @@ export const routes: Routes = [
         children: [{
             path: "",
             component: Home,
-
         },
         {
             path: "menus",
             component: Menu,
-        },
-        {
-        path: "bar-manager",
-        component: BarManager,
-    },]
+        }]
     },
     {
         path: "register",
@@ -31,5 +27,18 @@ export const routes: Routes = [
     {
         path: "login",
         component: Login,
+    },
+    {
+        path: ":id",
+        component: LoggedHeader,
+        children: [{
+            path: "",
+            component: Home,
+        },
+        {
+            path: "bar-manager",
+            component: BarManager,
+        },
+        ]
     },
 ];

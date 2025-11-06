@@ -1,19 +1,26 @@
-import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
+import { UsersService } from '../../services/users-service';
+import { UserType } from '../../interfaces/user-type';
 
 @Component({
   selector: 'app-logged-header',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLinkWithHref],
   templateUrl: './logged-header.html',
   styleUrls: ['./logged-header.scss'],
 })
-export class LoggedHeader {
+export class LoggedHeader implements OnInit{
 authService = inject(AuthService);
+usersService = inject(UsersService)
+userName = signal<string|undefined>(undefined)
 
-getuserName(): string | undefined {
-  return undefined;
+async ngOnInit(): Promise<void> {
+  const user: UserType | undefined = await this.usersService.getUserById(this.authService.id);
+  if (user && user.firstName && user.lastName) {
+    this.userName.set(`${user.firstName} ${user.lastName}`);
+  }
 }
 
 logout() {

@@ -1,5 +1,5 @@
 export interface UserType {
-    id: string,
+    id: number,
     restaurantName: string,
     firstName: string,
     lastName:string,
