@@ -7,7 +7,7 @@ import { AuthService } from './auth-service';
 })
 export class UsersService {
   authService = inject(AuthService);
-
+//////////////////////////// Register
   async register(registerData: NewUserType){
     return await fetch("https://w370351.ferozo.com/api/users", {
       method: "POST",
@@ -15,7 +15,7 @@ export class UsersService {
       body: JSON.stringify(registerData)
     });
   }
-
+////////////////////////// Obtener usuarios por id
   async getUserById (id: number | undefined) {
     const res = await fetch(`https://w370351.ferozo.com/api/users/${id}`, {
       headers: {
@@ -26,4 +26,14 @@ export class UsersService {
     return user
   }
   //consultar el tema de tipo de dato undefinied del id (lo hice para que me deje llamar a la funcion en logged header)
+  /////////////////////// ibtener restaurentes(usuarios)
+    async getUsers () {
+    const res = await fetch(`https://w370351.ferozo.com/api/users`, {
+      headers: {
+        Authorization: "Bearer " + this.authService.token,
+      }
+    });
+    const users = await res.json()
+    return users
+  }
 }
