@@ -1,13 +1,13 @@
 export interface ProductType{
-  id: any
+  id: number
   name: string,
   description: string,
-  price: 0,
-  categoryId: 0,
-  featured: true,
+  price: number,
+  categoryId: number,
+  featured: boolean,
   labels: [],
-  recommendedFor: 0,
-  discount: 0,
+  recommendedFor: string,
+  discount: number,
   hasHappyHour: boolean
 }
 export type NewProduct = ProductType
