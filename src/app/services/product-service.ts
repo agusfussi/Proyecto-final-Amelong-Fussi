@@ -1,18 +1,50 @@
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth-service';
-import { NewProduct, ProductType } from '../interfaces/products-types';
+import { NewProductType, ProductType } from '../interfaces/products-types';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
   authService = inject(AuthService)
-  productos: any;
-  ////////////////////////////////
-  async creatProduct(productData: NewProduct) {
-    const nuevoProducto: ProductType = {
-      ...productData,
-    };
+  productos: ProductType[] = [];
+
+  async getProductsByUserId(userId: number) {
+    const res = await fetch(`https://w370351.ferozo.com/api/users/${userId}/products`,
+      {
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+        }
+      });
+    const resJson: ProductType[] = await res.json();
+    return resJson;
+    //this.productos = resJson;
+  }
+
+  async getProductsLoggedRestaurant(){
+    const res = await fetch('https://w370351.ferozo.com/api/products/me',
+      {
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+        }
+      });
+    const resJson: ProductType[] = await res.json();
+    return resJson
+  }
+
+  async getProductById(productId: number){
+    const res = await fetch(`https://w370351.ferozo.com/api/products/${productId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+        }
+      });
+    const resJson: ProductType = await res.json();
+    return resJson
+  }
+
+  async createProduct(productData: NewProductType) {
     const res = await fetch('https://w370351.ferozo.com/api/products',
       {
         method: "POST",
@@ -30,9 +62,8 @@ export class ProductService {
       return false;
     }
   }
-  //////////////////////////////////
-    async editProduct(productData: ProductType) {
 
+  async editProduct(productData: ProductType) {
     const res = await fetch(`https://w370351.ferozo.com/api/products/${productData.id}`,
       {
         method: "PUT",
@@ -43,36 +74,32 @@ export class ProductService {
         body: JSON.stringify(productData)
       }
     );
-    if (!res.ok) return null;
-    if (res.status === 204) {
-      this.productos = this.productos.map((c: { id: any; }) =>
-        c.id === productData.id ? productData : c
-      );
+    if (!res.ok) {return false}
+      this.productos = this.productos.map(product => {
+        if (product.id === productData.id) {
+          return productData;
+        }
+        return product;
+      });
       return productData;
-    }
-    const resultado: ProductType = await res.json();
-    this.productos = this.productos.map((c: { id: any; }) =>
-      c.id === resultado.id ? resultado : c
-    );
-    return resultado
   }
-    ////////////////////////////////////////////////////////////////////////////
-  async setHappyHour(id: string | number) {
-    const res = await fetch(`https://w370351.ferozo.com/api/products` + "/" + id + "/happyHour",
+
+  async setHappyHour(id: number) {
+    const res = await fetch(`https://w370351.ferozo.com/api/products/${id}/happyHour`,
       {
         method: "POST",
         headers: {
           Authorization: "Bearer " + this.authService.token,
         },
       });
-    if (!res.ok) return;
-    this.productos = this.productos.map((product: { id: string | number; isFavorite: any; }) => {
-      if (product.id === id) return {
-        ...product, isFavorite: !product.isFavorite
+    if (!res.ok) {return false}
+    else {this.productos = this.productos.map(product => {
+      if(product.id === id) {
+        return {...product, hasHappyHour: !product.hasHappyHour};
       };
-      return product
-    });
-    return true
+      return product;
+    })
+    return true;
+    }
   }
 }
-

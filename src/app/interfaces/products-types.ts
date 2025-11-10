@@ -10,4 +10,4 @@ export interface ProductType{
   discount: number,
   hasHappyHour: boolean
 }
-export type NewProduct = ProductType
+export type NewProductType = Omit<ProductType,"id">

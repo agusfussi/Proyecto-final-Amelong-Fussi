@@ -1,5 +1,5 @@
 export interface CategoriesType{
-  id: string | number
+  id: number
   name: string
 }
 
