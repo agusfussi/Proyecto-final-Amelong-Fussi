@@ -27,54 +27,26 @@
                 </div>
             </div>
         </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <!--Listado-->
     <div class="mt-4">
         <h3 class="text-center mb-4 fw-semibold">Listado de Restaurantes</h3>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @for (restaurant of userService.restaurants; track $index) {
             <div class="col">
-                <div class="card h-100">
-                    <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/loscabosmx/cafe_desartistes_restaurante_5_020d8733-39f3-4414-85e5-70d97e74ec28.jpg" alt="">
-                    <div class="card-body">
-                        <p class="card-title">Restaurante1</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-0 text-center">
-                        <button class="btn btn-dark">Ver más</button>
-                    </div>
-                </div>
+                <app-restaurant-list-cards [restaurant]="restaurant"></app-restaurant-list-cards>
             </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c" alt="">
-                    <div class="card-body">
-                        <p class="card-title">Restaurante2</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-0 text-center">
-                        <button class="btn btn-dark">Ver más</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://th.bing.com/th/id/R.a5fce7a7e94ac8a6287016f65bd3b7de?rik=SAhgytpEo97kZg&pid=ImgRaw&r=0" alt="">
-                    <div class="card-body">
-                        <p class="card-title">Restaurante3</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-0 text-center">
-                        <button class="btn btn-dark">Ver más</button>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
-       
-  
+    </div>
+</div>

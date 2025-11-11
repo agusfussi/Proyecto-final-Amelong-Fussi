@@ -1,0 +1,13 @@
+<div class="card h-100 shadow-sm">
+  <img
+    src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c"
+    class="card-img-top"
+    alt="imagen del restaurante"
+  >
+  <div class="card-body text-center">
+    <p class="card-title fw-semibold">{{ restaurant().restaurantName }}</p>
+  </div>
+  <div class="card-footer bg-transparent border-0 text-center">
+    <a [routerLink]="['menu',restaurant().id]" class="btn btn-dark">Ver menu</a>
+  </div>
+</div>

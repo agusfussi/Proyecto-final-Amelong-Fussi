@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { NewUserType } from '../interfaces/user-type';
+import { NewUserType, UserType } from '../interfaces/user-type';
 import { AuthService } from './auth-service';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { AuthService } from './auth-service';
 })
 export class UsersService {
   authService = inject(AuthService);
+  restaurants: UserType[] | undefined = undefined
 //////////////////////////// Register
   async register(registerData: NewUserType){
     return await fetch("https://w370351.ferozo.com/api/users", {
@@ -34,6 +35,7 @@ export class UsersService {
       }
     });
     const users = await res.json()
+    this.restaurants = users
     return users
   }
 }

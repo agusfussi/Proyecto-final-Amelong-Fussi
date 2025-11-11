@@ -18,8 +18,8 @@ export class ProductService {
         }
       });
     const resJson: ProductType[] = await res.json();
+    this.productos = resJson;
     return resJson;
-    //this.productos = resJson;
   }
 
   async getProductsLoggedRestaurant(){
