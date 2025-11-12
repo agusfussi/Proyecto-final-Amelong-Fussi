@@ -11,3 +11,7 @@ export interface ProductType{
   hasHappyHour: boolean
 }
 export type NewProductType = Omit<ProductType,"id">
+
+export interface setDiscountType {
+  discount: number,
+}

@@ -9,7 +9,7 @@ export class AuthService {
   router = inject(Router);
   token : null|string = null;
   id: number | undefined = undefined;
-
+////////////////////////////////////////////
   async login(loginData: AuthType){
     const res = await fetch("https://w370351.ferozo.com/api/Authentication/login",{
       method: "POST",
@@ -18,13 +18,14 @@ export class AuthService {
     })
     console.log(res)
     if(res.ok){
-      this.token = await res.text()
-      localStorage.setItem("token",this.token);
+      const obj = await res.json();
+      this.token = obj.token;
+      localStorage.setItem("token",this.token!);
       this.id = this.getUserId()
       this.router.navigate(["/",this.id])
     }
   }
-
+////////////////////////////////////////////
   parseJwt (token: string) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -34,12 +35,12 @@ export class AuthService {
 
     return JSON.parse(jsonPayload);
   }
-
+////////////////////////////////////////////
   getUserId() {
     if (!this.token) return;
     return parseInt(this.parseJwt(this.token).sub);
   }
-
+////////////////////////////////////////////
   logout(){
     this.token = null;
     localStorage.removeItem("token")

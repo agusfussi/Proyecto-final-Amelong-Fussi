@@ -15,7 +15,6 @@ export class Login {
   isLoading = false;
 
   async login(form:any){
-    console.log(form.value)
     this.errorLogin = false;
     if(!form.value.restaurantName || !form.value.password){
       this.errorLogin = true;
