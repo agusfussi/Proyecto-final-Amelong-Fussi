@@ -1,0 +1,25 @@
+<div class="mb-4">
+
+    <button
+        class="btn btn-outline-secondary bg-light-subtle border-2 border-warning-subtle text-dark fw-semibold px-5 py-3 w-75"
+        type="button" data-bs-toggle="collapse" id="#categoria1" aria-expanded="false">
+        {{ category().name }}
+    </button>
+    <div class="collapse mt-3" id="categoria1">
+
+        <div class="collapse mt-3" id="categoria1">
+            <div class="bg-body-secondary py-3 w-50 mx-auto mb-2 rounded shadow-sm border border-light-subtle">
+                Producto 1
+            </div>
+        </div>
+    </div>
+
+    <div class="collapse mt-3" id="categoria1">
+
+        @for (products of productService.productos[this.menuService.id()]; track $index) {
+        @if (products.categoryId === category().id) {
+        <app-products-list-items [products]="products"></app-products-list-items>
+        }
+        }
+    </div>
+</div>
