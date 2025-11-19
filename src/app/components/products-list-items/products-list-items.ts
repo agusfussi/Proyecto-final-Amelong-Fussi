@@ -12,8 +12,5 @@ import { CategoryListItem } from '../category-list-item/category-list-item';
 })
 export class ProductsListItems {
   menuService = inject(CategoryListItem)
-  
-  
   products = input.required<ProductType>();
-  
 }
