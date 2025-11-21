@@ -1,8 +1,8 @@
 <button class="mt-3 py-3 w-50 mx-auto mb-2 rounded shadow-sm border border-light-subtle" data-bs-toggle="modal"
     [attr.data-bs-target]="'#menuDetails-' + products().id">
-    {{ products().name }}
+    {{ products().name }} ${{ products().price }}
 </button>
-
+<!-- esto es el modal que aparece cuando clikeas el producto -->
 <div class="modal fade" [id]="'menuDetails-' + products().id" data-bs-backdrop="static" data-bs-keyboard="false"
     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

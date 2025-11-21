@@ -3,4 +3,4 @@ export interface CategoriesType{
   name: string
 }
 
-export type NewcategorieType = Omit<CategoriesType,"id">
+export type NewCategoryType = Omit<CategoriesType,"id">

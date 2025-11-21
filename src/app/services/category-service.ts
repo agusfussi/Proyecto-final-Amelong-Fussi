@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { CategoriesType, NewcategorieType } from '../interfaces/categories-types';
+import { CategoriesType, NewCategoryType } from '../interfaces/categories-types';
 import { AuthService } from './auth-service';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class CategoryService {
     this.categories[id] = resJson
   }
 ///////////////////////////////////////////////
-  async createCategory(categoryData: NewcategorieType) {
+  async createCategory(categoryData: NewCategoryType) {
     const res = await fetch('https://w370351.ferozo.com/api/categories',
       {
         method: "POST",

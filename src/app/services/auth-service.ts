@@ -16,7 +16,6 @@ export class AuthService {
       headers: {"Content-type": "application/json"},
       body: JSON.stringify(loginData)
     })
-    console.log(res)
     if(res.ok){
       const obj = await res.json();
       this.token = obj.token;

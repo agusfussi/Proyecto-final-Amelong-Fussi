@@ -1,3 +1,18 @@
-  <div class="mt-4">
-    <p class="mb-3">{{ category().name }}</p>
+<div class="my-2 row d-flex align-items-start">
+  <div class="col-2">
+  <button class="btn btn-outline-secondary w-10 h-100">+</button>
+  <button class="btn btn-sm btn-outline-primary w-80">Editar</button>
   </div>
+  <p class="col-3 m-0">{{ category().name }}</p>
+  <div class="col-3">
+    @if (this.barManager.id) {
+    @for (product of productService.productos[this.barManager.id]; track $index) {
+    @if (category().id === product.categoryId){
+    <div class="column col-3">
+      <app-products-list-manager [products]="product"></app-products-list-manager>
+    </div>
+    }
+    }
+    }
+  </div>
+</div>
