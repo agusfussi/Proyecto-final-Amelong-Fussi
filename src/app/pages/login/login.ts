@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule,FormsModule],
+  imports: [RouterModule, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -14,9 +14,9 @@ export class Login {
   authService = inject(AuthService);
   isLoading = false;
 
-  async login(form:any){
+  async login(form: any) {
     this.errorLogin = false;
-    if(!form.value.restaurantName || !form.value.password){
+    if (!form.value.restaurantName || !form.value.password) {
       this.errorLogin = true;
       return
     }

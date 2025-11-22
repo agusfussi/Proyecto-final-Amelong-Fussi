@@ -17,6 +17,8 @@ export class BarManager {
   categoryService = inject(CategoryService)
   productService = inject(ProductService)
   id = this.auth.getUserId()
+  error = false
+
   async ngOnInit(): Promise<void> {
     if (this.id != undefined) {
       this.categoryService.getCategoriesByUserId(this.id)
@@ -24,7 +26,7 @@ export class BarManager {
   }
   async createCategory(form: any){
     const categoryData: NewCategoryType = {
-      name: form.name
+      name: form.value.name
     }
     await this.categoryService.createCategory(categoryData);
   }

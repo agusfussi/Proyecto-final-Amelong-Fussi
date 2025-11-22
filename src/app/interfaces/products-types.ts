@@ -5,8 +5,8 @@ export interface ProductType{
   price: number,
   categoryId: number,
   featured: boolean,
-  labels: [],
-  recommendedFor: string,
+  labels: string[],
+  recommendedFor: number,
   discount: number,
   hasHappyHour: boolean
 }

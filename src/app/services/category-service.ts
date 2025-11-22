@@ -54,7 +54,7 @@ export class CategoryService {
       },
     });
     if (!res.ok) return false;
-    delete this.categories[this.authService.getUserId()!][id]; 
+    this.categories[this.authService.getUserId()!] = this.categories[this.authService.getUserId()!].filter(cat => cat.id !== id);
     return true;
   }
   //////////////////////////////////////

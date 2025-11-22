@@ -17,7 +17,7 @@ export class Register {
 
   async register(form: any) {
     this.errorRegister = false;
-    if (!form.value.Name || !form.value.password || !form.value.address || !form.value.phoneNumber || !form.value.password2 || !form.value.firstName || !form.value.lastName || form.password !== form.password2) {
+    if (!form.value.restaurantName || !form.value.password || !form.value.address || !form.value.phoneNumber || !form.value.password2 || !form.value.firstName || !form.value.lastName || form.password !== form.password2) {
       this.errorRegister = true;
       return
     }

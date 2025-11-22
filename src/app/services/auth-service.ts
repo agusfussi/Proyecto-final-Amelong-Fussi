@@ -7,7 +7,15 @@ import { AuthType } from '../interfaces/auth-type';
 })
 export class AuthService {
   router = inject(Router);
-  token : null|string = null;
+  token: string | null = null;
+constructor() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.token = localStorage.getItem('token');
+      if (this.token) {
+        this.id = this.getUserId();
+      }
+    }
+  }
   id: number | undefined = undefined;
 ////////////////////////////////////////////
   async login(loginData: AuthType){
@@ -23,6 +31,9 @@ export class AuthService {
       this.id = this.getUserId()
       this.router.navigate(["/",this.id])
     }
+  }
+  getToken() {
+    return this.token;
   }
 ////////////////////////////////////////////
   parseJwt (token: string) {
