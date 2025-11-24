@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { CategoriesType } from '../../interfaces/categories-types';
+import { CategoriesType, NewCategoryType } from '../../interfaces/categories-types';
 import { ProductService } from '../../services/product-service';
 import { BarManager } from '../../pages/bar-manager/bar-manager';
 import { ProductsListManager } from "../products-list-manager/products-list-manager";
@@ -15,6 +15,7 @@ import { NewProductType } from '../../interfaces/products-types';
   styleUrl: './category-list-manager.scss',
 })
 export class CategoryListManager {
+  
   barManager = inject(BarManager)
   category = input.required<CategoriesType>();
   productService = inject(ProductService)
@@ -55,4 +56,11 @@ export class CategoryListManager {
     console.log(productData)
     await this.productService.createProduct(productData);
   }
+  async editCategory(form: any){
+      const categoryData: CategoriesType = {
+        id: this.category().id,
+        name: form.value.name
+      }
+      await this.categoryService.editCategory(categoryData);
+    }
 }
