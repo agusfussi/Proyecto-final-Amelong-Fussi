@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, RestaurantListCards, CommonModule],
+  imports: [RestaurantListCards, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

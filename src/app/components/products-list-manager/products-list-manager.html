@@ -1,4 +1,4 @@
-<div class="my-1 d-flex align-items-start">
+<div class="my-2 d-flex align-items-start">
     <p class="m-0 col-6">{{ products().name }}</p>
     <!-- ///////////////////////////////////// -->
     <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
@@ -9,15 +9,15 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva categoría</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita el producto</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form #newProductForm="ngForm">
+                    <form #editProductForm="ngForm">
                         <div>
                             <label [for]="'name-' + products().id" class="form-label">Nombre</label>
                             <input [id]="'name-' + products().id" class="form-control" name="name" required ngModel
-                                type="text" #name="ngModel"  [(ngModel)]="products().name">
+                                type="text" #name="ngModel">
                             @if (name.invalid && !name.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar un nombre de producto.</p>
                             }
@@ -25,7 +25,7 @@
                         <div>
                             <label [for]="'description-' + products().id" class="form-label">Descripción</label>
                             <input [id]="'description-' + products().id" class="form-control" name="description"
-                                required ngModel type="text" #description="ngModel" [(ngModel)]="products().description">
+                                required ngModel type="text" #description="ngModel">
                             @if (description.invalid && !description.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>
                             }
@@ -33,7 +33,7 @@
                         <div>
                             <label [for]="'price-' + products().id" class="form-label">Precio</label>
                             <input [id]="'price-' + products().id" class="form-control" name="price" required ngModel
-                                type="number" #price="ngModel" [(ngModel)]="products().price">
+                                type="number" #price="ngModel">
                             @if (price.invalid && !price.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar un precio.</p>
                             }
@@ -45,13 +45,22 @@
                         </div>
                         <div>
                             <label [for]="'labels-' + products().id" class="form-label">Etiqueta</label>
-                            <input [id]="'labels-' + products().id" class="form-control" name="labels" ngModel
-                                type="text" #labels="ngModel" [(ngModel)]="products().labels">
+                            <select class="form-select" [id]="'labels-' + products().id" name="labels" ngModel
+                                #labels="ngModel" aria-label="Default select example">
+                                <option selected>None</option>
+                                <option value="Vegan">Vegan</option>
+                                <option value="Vegetarian">Vegetarian</option>
+                                <option value="GlutenFree">GlutenFree</option>
+                                <option value="Spicy">Spicy</option>
+                                <option value="SugarFree">SugarFree</option>
+                                <option value="Kids">Kids</option>
+                                <option value="Shareable">Shareable</option>
+                            </select>
                         </div>
                         <div>
                             <label [for]="'recommendedFor-' + products().id" class="form-label">Recomendado para</label>
                             <input [id]="'recommendedFor-' + products().id" class="form-control" name="recommendedFor"
-                                ngModel type="text" #recommendedFor="ngModel">
+                                ngModel type="number" #recommendedFor="ngModel">
                         </div>
                         <div>
                             <label [for]="'discount-' + products().id" class="form-label">Descuento (%)</label>
@@ -65,7 +74,8 @@
                         </div>
                         <div>
                             <button class="btn btn-dark mt-2" data-bs-dismiss="modal"
-                                [disabled]="newProductForm.invalid" (click)="editProduct(newProductForm)">Crear</button>
+                                [disabled]="editProductForm.invalid"
+                                (click)="editProduct(editProductForm)">Aceptar</button>
                         </div>
                     </form>
                 </div>

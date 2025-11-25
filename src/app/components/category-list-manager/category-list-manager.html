@@ -9,7 +9,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva categoría</h1>
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Nuevo producto</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -45,13 +45,22 @@
               </div>
               <div>
                 <label [for]="'labels-' + category().id" class="form-label">Etiqueta</label>
-                <input [id]="'labels-' + category().id" class="form-control" name="labels" ngModel type="text"
-                  #labels="ngModel">
+                <select class="form-select" [id]="'labels-' + category().id" name="labels" ngModel #labels="ngModel" aria-label="Default select example">
+                  <option selected>None</option>
+                  <option value="Vegan">Vegan</option>
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="GlutenFree">GlutenFree</option>
+                  <option value="Spicy">Spicy</option>
+                  <option value="SugarFree">SugarFree</option>
+                  <option value="Kids">Kids</option>
+                  <option value="Shareable">Shareable</option>
+                </select>
               </div>
               <div>
-                <label [for]="'recommendedFor-' + category().id" class="form-label">Recomendado para</label>
+                <label [for]="'recommendedFor-' + category().id" class="form-label">Cantidad de personas
+                  recomendada</label>
                 <input [id]="'recommendedFor-' + category().id" class="form-control" name="recommendedFor" ngModel
-                  type="text" #recommendedFor="ngModel">
+                  type="number" #recommendedFor="ngModel" min="1" required>
               </div>
               <div>
                 <label [for]="'discount-' + category().id" class="form-label">Descuento (%)</label>
@@ -76,26 +85,26 @@
     <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
       [attr.data-bs-target]="'#modalEditCategory-' + category().id">Editar</button>
 
-    <div class="modal fade" [id]="'modalEditCategory-' + category().id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" [id]="'modalEditCategory-' + category().id" data-bs-backdrop="static"
+      data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita la Fcategoría</h1>
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita la categoría</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form #newCategoryForm="ngForm">
+            <form #editCategoryForm="ngForm">
               <div>
                 <label for="name" class="form-label">Nombre</label>
-                <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel" [(ngModel)]="category().name">
+                <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
                 @if (name.invalid && !name.pristine) {
                 <p class="text-danger fs-6 mt-2">Debe colocar un nombre de categoría.</p>
                 }
               </div>
               <div>
-                <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="newCategoryForm.invalid"
-                  (click)="editCategory(newCategoryForm)">Aceptar</button>
+                <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="editCategoryForm.invalid"
+                  (click)="editCategory(editCategoryForm)">Aceptar</button>
               </div>
             </form>
           </div>
