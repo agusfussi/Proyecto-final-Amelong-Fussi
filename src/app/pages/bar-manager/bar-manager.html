@@ -1,9 +1,92 @@
-<div class="container py-5">
+<div class="container">
 
-  <h2 class="text-center mb-4">Administrá tus productos</h2>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditUserData">Gestionar mi
+      cuenta</button>
+  </div>
+  <div class="modal fade" id="modalEditUserData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar mi cuenta</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="editUser(editUserDataForm)" #editUserDataForm="ngForm">
+            <div class="mb-2">
+              <label for="restaurantName" class="form-label">Nombre de restaurante</label>
+              <input id="restaurantName" class="form-control" name="restaurantName" type="text" ngModel
+                #userName="ngModel" required="true" autocomplete="userName">
+              @if (userName.invalid && !userName.pristine) {
+              <p class="text-danger fs-6 mt-2">Debe colocar un nombre.</p>
+              }
+            </div>
+            <div class="mb-2">
+              <label for="firstName" class="form-label">Nombre</label>
+              <input id="firstName" class="form-control" name="firstName" type="text" ngModel #firstName="ngModel"
+                required="true" autocomplete="firstName">
+              @if (firstName.invalid && !firstName.pristine) {
+              <p class="error">Debe colocar un nombre.</p>
+              }
+            </div>
+            <div class="mb-2">
+              <label for="lastName" class="form-label">Apellido</label>
+              <input id="lastName" class="form-control" name="lastName" type="text" ngModel #lastName="ngModel"
+                required="true" autocomplete="lastName">
+              @if (lastName.invalid && !lastName.pristine) {
+              <p class="error">Debe colocar un apellido.</p>
+              }
+            </div>
+            <div class="mb-2">
+              <label for="address" class="form-label">Dirección</label>
+              <input id="address" class="form-control" name="address" type="text" ngModel #address="ngModel"
+                required="true" autocomplete="lastName">
+              @if (address.invalid && !address.pristine) {
+              <p class="error">Debe colocar una dirección.</p>
+              }
+            </div>
+            <div class="mb-2">
+              <label for="phoneNumber" class="form-label">Teléfono</label>
+              <input id="phoneNumber" class="form-control" name="phoneNumber" type="text" ngModel #lastName="ngModel"
+                required="true" autocomplete="lastName">
+              @if (lastName.invalid && !lastName.pristine) {
+              <p class="error">Debe colocar un número de teléfono</p>
+              }
+            </div>
+            <div class="mb-2">
+              <label for="password" class="form-label">Contraseña</label>
+              <input id="password" class="form-control" name="password" type="password" ngModel #password="ngModel"
+                minlength="4" autocomplete="current-password">
+              @if (password.invalid && !password.pristine) {
+              <p class="text-danger fs-6 mt-2">Debe colocar una contraseña de al menos 4 caracteres.</p>
+              }
+            </div>
+            <div>
+              <label for="password2" class="form-label">Repite la contraseña</label>
+              <input id="password2" class="form-control" name="password2" type="password" ngModel #password2="ngModel"
+                minlength="4" autocomplete="new-password">
+              @if (password.invalid && !password.pristine) {
+              <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
+              }
+            </div>
+            <div>
+              <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="editUserDataForm.invalid">Guardar cambios</button>
+            </div>
+          </form>
+          <div>
+            <button class="btn btn-danger mt-2" data-bs-dismiss="modal" (click)="openDeleteModal()">Eliminar mi cuenta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalNewCategory" (click)="newCategoryForm.reset()">+ Nueva
+  <h2 class="mb-4 text-center">Administrá tus productos</h2>
+
+  <div class="mb-4">
+    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalNewCategory"
+      (click)="newCategoryForm.reset()">+ Nueva
       categoría</button>
   </div>
 
@@ -19,14 +102,14 @@
           <form #newCategoryForm="ngForm">
             <div>
               <label for="name" class="form-label">Nombre</label>
-              <input id="name" class="form-control" name="name" required ngModel type="text"
-                #name="ngModel">
+              <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
               @if (name.invalid && !name.pristine) {
               <p class="text-danger fs-6 mt-2">Debe colocar un nombre de categoría.</p>
               }
             </div>
             <div>
-              <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="newCategoryForm.invalid" (click)="createCategory(newCategoryForm)">Crear</button>
+              <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="newCategoryForm.invalid"
+                (click)="createCategory(newCategoryForm)">Crear</button>
             </div>
           </form>
         </div>

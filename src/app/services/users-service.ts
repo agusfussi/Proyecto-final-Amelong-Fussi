@@ -42,7 +42,10 @@ export class UsersService {
   async editUser(userData: UserType) {
     const res = await fetch(`https://w370351.ferozo.com/api/users/${userData.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json" ,
+        "Authorization": "Bearer " + this.authService.token,
+      },
       body: JSON.stringify(userData),
     });
     this.restaurants = this.restaurants.map(restaurant => {
@@ -63,7 +66,8 @@ export class UsersService {
     });
     if (res.ok) {
       this.restaurants = this.restaurants.filter(restaurant => restaurant.id !== id)
-      return true;
+      this.authService.logout()
+      return true
     } else {
       return false;
     }

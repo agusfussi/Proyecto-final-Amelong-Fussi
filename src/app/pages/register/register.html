@@ -67,7 +67,7 @@
                         </div>
                         <button class="btn btn-dark my-4">Crear cuenta</button>
                         @if(isLoading){
-                        <!--<app-spinner></app-spinner>-->
+                        <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"><span class="sr-only"></span></span>
                         }
                         @if (errorRegister) {
                         <p class="text-danger fs-6">Error indeterminado, intente nuevamente.</p>
