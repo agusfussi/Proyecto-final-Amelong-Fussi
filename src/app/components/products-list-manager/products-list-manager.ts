@@ -19,9 +19,8 @@ export class ProductsListManager {
   editProductForm = viewChild<NgForm>('editProductForm')
 
   async ngOnInit() {
-    console.log(this.products())
+    
     if (this.products()) {
-
      await this.editProductForm()?.setValue({
         name: this.products().name,
         description: this.products().description,

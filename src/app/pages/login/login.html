@@ -2,39 +2,43 @@
     <div class="row h-100">
         <div class="col-md-6 d-none d-md-block p-0">
             <img src="https://images.unsplash.com/photo-1666032119084-82351976a922?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1035"
-                alt="Imagen login" class="w-100 h-100">
+                alt="Imagen login" class="img-left img-full">
         </div>
-        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-            <div class="card border-0 shadow-lg" style="width: 100%; max-width: 450px;">
-                <div class="card-body p-5"> 
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center ">
+            <div class="card border-0 shadow-lg login-box" style="width: 100%; max-width: 450px;">
+                <div class="card-body p-5">
                     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
                         <h2 class="text-center fw-bold mb-4">Iniciar sesión</h2>
                         <div class="mb-2">
                             <label for="restaurantName" class="form-label">Nombre de restaurante</label>
-                            <input id="restaurantName" class="form-control" name="restaurantName" type="text" ngModel #restaurantName="ngModel" required="true"
-                                autocomplete="userName">
+                            <input id="restaurantName" class="form-control" name="restaurantName" type="text" ngModel
+                                #restaurantName="ngModel" required="true" autocomplete="userName">
                             @if (restaurantName.invalid && !restaurantName.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar un nombre.</p>
                             }
                         </div>
                         <div>
                             <label for="password" class="form-label">Contraseña</label>
-                            <input id="password" class="form-control" name="password" type="password" ngModel #password="ngModel"
-                                minlength="4" autocomplete="current-password">
+                            <input id="password" class="form-control" name="password" type="password" ngModel
+                                #password="ngModel" minlength="4" autocomplete="current-password">
                             @if (password.invalid && !password.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar una contraseña de al menos 4 caracteres.</p>
                             }
                         </div>
                         <button class="btn btn-dark my-4">Entrar</button>
                         @if(isLoading){
-                        <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"><span class="sr-only"></span></span>
+                        <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"><span
+                                class="sr-only"></span></span>
                         }
                         @if (errorLogin) {
                         <p class="text-danger fs-6">Error indeterminado, intente nuevamente.</p>
                         }
                         <div class="text-center">
-                        <p class="mb-0">¿No tenés cuenta?</p>
-                        <a class="fw-bold text-decoration-none text-dark" routerLink="/register">Registrate</a>
+                            <p class="mb-0">¿No tenés cuenta?</p>
+                            <div class="spac">
+                                <a class="fw-bold text-decoration-none text-dark" routerLink="/register">Registrate</a>
+                                <a class="fw-bold text-decoration-none text-dark ms-4" routerLink="/">Volver</a>
+                            </div>
                         </div>
                     </form>
                 </div>

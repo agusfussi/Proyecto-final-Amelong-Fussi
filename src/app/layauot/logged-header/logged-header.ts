@@ -3,6 +3,7 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { UsersService } from '../../services/users-service';
 import { UserType } from '../../interfaces/user-type';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-logged-header',
@@ -23,7 +24,23 @@ async ngOnInit(): Promise<void> {
   }
 }
 
-logout() {
-    this.authService.logout();
+  openDeleteModal() {
+    Swal.fire({
+      title: "¿Deseas deslogearte?",
+      showDenyButton: true,
+      showCancelButton: true,
+      showConfirmButton: false,
+      cancelButtonText: "Cancelar",
+      denyButtonText: "Aceptar",
+    }).then((result) => {
+      if (result.isDenied) {
+        this.logout().then(() =>
+        {Swal.fire("Deslogeado con exito");});
+      }
+    });
+  }
+
+async logout() {
+   this.authService.logout();
   }
 }

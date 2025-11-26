@@ -4,7 +4,7 @@
     <span class="ms-3 text-dark fw-semibold">Hola, {{userName()}}</span>
     <div class="ms-auto d-flex gap-3">
       <a class="btn btn-outline-dark" [routerLink]="['/',authService.id,'bar-manager']">Administrá tu restaurante</a>
-      <a class="btn btn-dark" (click)="logout()">Cerrar sesión</a>
+      <a class="btn btn-dark" (click)="openDeleteModal()">Cerrar sesión</a>
     </div>
   </nav>
 </header>
