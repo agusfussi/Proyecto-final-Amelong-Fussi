@@ -1,6 +1,43 @@
 <div class="my-2 row d-flex align-items-start">
+  <p class="col-3 m-0">{{ category().name }}</p>
   <div class="col-4">
     <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+    
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+    <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
+      [attr.data-bs-target]="'#modalEditCategory-' + category().id">Editar</button>
+
+    <div class="modal fade" [id]="'modalEditCategory-' + category().id" data-bs-backdrop="static"
+      data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita la categoría</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #editCategoryForm="ngForm">
+              <div>
+                <label for="name" class="form-label">Nombre</label>
+                <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
+                @if (name.invalid && !name.pristine) {
+                <p class="text-danger fs-6 mt-2">Debe colocar un nombre de categoría.</p>
+                }
+              </div>
+              <div>
+                <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="editCategoryForm.invalid"
+                  (click)="editCategory(editCategoryForm)">Aceptar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ///////////////////////////////////// -->
+    <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar Categoria</button>
+  </div>
+  
+  <div class="col-5">
     <button class="btn btn-outline-secondary" data-bs-toggle="modal"
       [attr.data-bs-target]="'#modalNewProduct-' + category().id" (click)="newProductForm.reset()">+ Nuevo
       producto</button>
@@ -81,41 +118,6 @@
         </div>
       </div>
     </div>
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-    <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
-      [attr.data-bs-target]="'#modalEditCategory-' + category().id">Editar</button>
-
-    <div class="modal fade" [id]="'modalEditCategory-' + category().id" data-bs-backdrop="static"
-      data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita la categoría</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form #editCategoryForm="ngForm">
-              <div>
-                <label for="name" class="form-label">Nombre</label>
-                <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
-                @if (name.invalid && !name.pristine) {
-                <p class="text-danger fs-6 mt-2">Debe colocar un nombre de categoría.</p>
-                }
-              </div>
-              <div>
-                <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="editCategoryForm.invalid"
-                  (click)="editCategory(editCategoryForm)">Aceptar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ///////////////////////////////////// -->
-    <button class="btn btn-outline-secondary" (click)="openDeleteModal()">🗑️</button>
-  </div>
-  <p class="col-3 m-0">{{ category().name }}</p>
-  <div class="col-5">
     @if (this.barManager.id) {
     @for (product of productService.productos[this.barManager.id]; track $index) {
     @if (category().id === product.categoryId){

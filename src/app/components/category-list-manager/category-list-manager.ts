@@ -20,19 +20,19 @@ export class CategoryListManager {
   category = input.required<CategoriesType>();
   productService = inject(ProductService)
   categoryService = inject(CategoryService)
-  editCategoryForm = viewChild<NgForm>('editCategoryForm')
+  editCategoryForm = viewChild<NgForm>('editCategoryForm');
 
   async ngOnInit() {
-  if (this.barManager.id) {
-    await this.productService.getProductsByUserId(this.barManager.id);
-  }
+    if (this.barManager.id) {
+      await this.productService.getProductsByUserId(this.barManager.id);
+    }
 
-  if (this.category()) {
-    this.editCategoryForm()?.setValue({
-      name: this.category().name,
-    });
+    if (this.category()) {
+      setTimeout(() => this.editCategoryForm()?.setValue({
+        name: this.category().name,
+      }), 0);
+    }
   }
-}
 
   openDeleteModal() {
     Swal.fire({
