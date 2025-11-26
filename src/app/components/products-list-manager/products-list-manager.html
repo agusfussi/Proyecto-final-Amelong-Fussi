@@ -16,7 +16,7 @@
                     <form #editProductForm="ngForm">
                         <div>
                             <label [for]="'name-' + products().id" class="form-label">Nombre</label>
-                            <input [id]="'name-' + products().id" class="form-control" name="name" required ngModel
+                            <input [id]="'name-' + products().id" class="form-control" name="name" required ngModel [(ngModel)]="products().name"
                                 type="text" #name="ngModel">
                             @if (name.invalid && !name.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar un nombre de producto.</p>
@@ -25,14 +25,14 @@
                         <div>
                             <label [for]="'description-' + products().id" class="form-label">Descripción</label>
                             <input [id]="'description-' + products().id" class="form-control" name="description"
-                                required ngModel type="text" #description="ngModel">
+                                required ngModel [(ngModel)]="products().description" type="text" #description="ngModel">
                             @if (description.invalid && !description.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>
                             }
                         </div>
                         <div>
                             <label [for]="'price-' + products().id" class="form-label">Precio</label>
-                            <input [id]="'price-' + products().id" class="form-control" name="price" required ngModel
+                            <input [id]="'price-' + products().id" class="form-control" name="price" required ngModel [(ngModel)]="products().price"
                                 type="number" #price="ngModel">
                             @if (price.invalid && !price.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar un precio.</p>
@@ -40,14 +40,14 @@
                         </div>
                         <div class="form-check">
                             <label [for]="'featured-' + products().id" class="form-check-label">Destacado</label>
-                            <input [id]="'featured-' + products().id" class="form-check-input" name="featured" ngModel
+                            <input [id]="'featured-' + products().id" class="form-check-input" name="featured" ngModel [(ngModel)]="products().featured"
                                 type="checkbox" #featured="ngModel">
                         </div>
                         <div>
                             <label [for]="'labels-' + products().id" class="form-label">Etiqueta</label>
-                            <select class="form-select" [id]="'labels-' + products().id" name="labels" ngModel
+                            <select class="form-select" [id]="'labels-' + products().id" name="labels" ngModel [(ngModel)]="products().labels"
                                 #labels="ngModel" aria-label="Default select example">
-                                <option selected>None</option>
+                                <option selected value="None">None</option>
                                 <option value="Vegan">Vegan</option>
                                 <option value="Vegetarian">Vegetarian</option>
                                 <option value="GlutenFree">GlutenFree</option>
@@ -59,18 +59,18 @@
                         </div>
                         <div>
                             <label [for]="'recommendedFor-' + products().id" class="form-label">Recomendado para</label>
-                            <input [id]="'recommendedFor-' + products().id" class="form-control" name="recommendedFor"
-                                ngModel type="number" #recommendedFor="ngModel">
+                            <input [id]="'recommendedFor-' + products().id" class="form-control" name="recommendedFor" ngModel
+                                [(ngModel)]="products().recommendedFor" type="number" #recommendedFor="ngModel">
                         </div>
                         <div>
                             <label [for]="'discount-' + products().id" class="form-label">Descuento (%)</label>
-                            <input [id]="'discount-' + products().id" class="form-control" name="discount" ngModel
+                            <input [id]="'discount-' + products().id" class="form-control" name="discount" ngModel [(ngModel)]="products().discount"
                                 type="number" #discount="ngModel">
                         </div>
                         <div class="form-check">
                             <label [for]="'hasHappyHour-' + products().id" class="form-check-label">Happy Hour</label>
-                            <input [id]="'hasHappyHour-' + products().id" class="form-check-input" name="hasHappyHour"
-                                ngModel type="checkbox" #hasHappyHour="ngModel">
+                            <input [id]="'hasHappyHour-' + products().id" class="form-check-input" name="hasHappyHour" ngModel
+                                [(ngModel)]="products().hasHappyHour" type="checkbox" #hasHappyHour="ngModel">
                         </div>
                         <div>
                             <button class="btn btn-dark mt-2" data-bs-dismiss="modal"

@@ -1,3 +1,17 @@
-
 /* Importing Bootstrap SCSS file. */
 @use 'bootstrap/scss/bootstrap';
+
+:root {
+    --color-bg: #ffffff;
+    --color-text: #000000;
+}
+
+.dark-theme {
+    --color-bg: #111111;
+    --color-text: #e4e4e4;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}

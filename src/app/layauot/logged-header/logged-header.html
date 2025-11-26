@@ -5,6 +5,9 @@
     <div class="ms-auto d-flex gap-3">
       <a class="btn btn-outline-dark" [routerLink]="['/',authService.id,'bar-manager']">Administrá tu restaurante</a>
       <a class="btn btn-dark" (click)="openDeleteModal()">Cerrar sesión</a>
+      <button (click)="toggleTheme()" class="btn btn-secondary">
+        Tema
+      </button>
     </div>
   </nav>
 </header>

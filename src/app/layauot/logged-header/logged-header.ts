@@ -22,7 +22,24 @@ async ngOnInit(): Promise<void> {
   if (user && user.firstName && user.lastName) {
     this.userName.set(`${user.firstName} ${user.lastName}`);
   }
-}
+   if (typeof window !== 'undefined' && window.localStorage)  {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.body.classList.add('dark-theme');
+    }
+  }
+    
+  }
+
+  toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('dark-theme');
+
+    localStorage.setItem(
+      'theme',
+      body.classList.contains('dark-theme') ? 'dark' : 'light'
+    );
+  }
 
   openDeleteModal() {
     Swal.fire({

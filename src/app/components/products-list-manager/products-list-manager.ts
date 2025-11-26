@@ -18,23 +18,6 @@ export class ProductsListManager {
   products = input.required<ProductType>();
   editProductForm = viewChild<NgForm>('editProductForm')
 
-  async ngOnInit() {
-    
-    if (this.products()) {
-     await this.editProductForm()?.setValue({
-        name: this.products().name,
-        description: this.products().description,
-        price: this.products().price,
-        featured: this.products().featured,
-        labels: this.products().labels,
-        recommendedFor: this.products().recommendedFor,
-        discount: this.products().discount,
-        hasHappyHour: this.products().hasHappyHour
-      })
-    }
-  }
-
-
   async editProduct(form: NgForm) {
     const originalHappyHour = this.products().hasHappyHour;
     const newHappyHour = form.value.hasHappyHour;
@@ -46,7 +29,7 @@ export class ProductsListManager {
       categoryId: this.products().categoryId,
       featured: form.value.featured || false,
       labels: [form.value.labels],
-      recommendedFor: form.value.recommendedFor,
+      recommendedFor: form.value.recommendedFor || 1,
       discount: form.value.discount,
       hasHappyHour: originalHappyHour,
     }
@@ -55,27 +38,10 @@ export class ProductsListManager {
       await this.productService.setHappyHour(this.products().id);
     }
     console.log(productData)
-
   }
 
   async setHappyHour() {
     await this.productService.setHappyHour(this.products().id);
-  }
-
-  async setDiscount(form: any) {
-    const productData: ProductType = {
-      id: this.products().id,
-      name: form.value.name,
-      description: form.value.description,
-      price: form.value.price,
-      categoryId: this.products().categoryId,
-      featured: form.value.featured || false,
-      labels: [],
-      recommendedFor: 0,
-      discount: form.value.discount || 0,
-      hasHappyHour: form.value.hasHappyHour || false,
-    }
-    await this.productService.editProduct(productData);
   }
 
   openDeleteModal() {
