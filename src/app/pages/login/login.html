@@ -4,9 +4,15 @@
             <img src="https://images.unsplash.com/photo-1666032119084-82351976a922?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1035"
                 alt="Imagen login" class="img-left img-full">
         </div>
-        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center ">
+        <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
             <div class="card border-0 shadow-lg login-box" style="width: 100%; max-width: 450px;">
-                <div class="card-body p-5">
+                <div class="card-body p-4 w-100">
+                    <div class="text-start">
+                        <a class="fw-bold text-decoration-none text-dark" routerLink="/"><svg width="24px" height="24px"
+                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 6L8 12L16 18V6Z" fill="#000000" />
+                            </svg>Volver</a>
+                    </div>
                     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
                         <h2 class="text-center fw-bold mb-4">Iniciar sesión</h2>
                         <div class="mb-2">
@@ -37,7 +43,6 @@
                             <p class="mb-0">¿No tenés cuenta?</p>
                             <div class="spac">
                                 <a class="fw-bold text-decoration-none text-dark" routerLink="/register">Registrate</a>
-                                <a class="fw-bold text-decoration-none text-dark ms-4" routerLink="/">Volver</a>
                             </div>
                         </div>
                     </form>
