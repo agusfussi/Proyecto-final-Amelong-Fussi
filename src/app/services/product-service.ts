@@ -97,7 +97,7 @@ export class ProductService {
       },
     });
     if (!res.ok) return false;
-    delete this.productos[this.authService.getUserId()!][id]; 
+    this.productos[this.authService.getUserId()!] = this.productos[this.authService.getUserId()!].filter(prod => prod.id != id)
     return true;
   }
 ////////////////////////////////////////////

@@ -1,9 +1,6 @@
 <div class="my-2 row d-flex align-items-start">
   <p class="col-3 m-0">{{ category().name }}</p>
   <div class="col-4">
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
-    
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
     <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
       [attr.data-bs-target]="'#modalEditCategory-' + category().id">Editar</button>
 
@@ -34,7 +31,7 @@
       </div>
     </div>
     <!-- ///////////////////////////////////// -->
-    <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar Categoria</button>
+    <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar categoría</button>
   </div>
   
   <div class="col-5">
@@ -83,7 +80,6 @@
               <div>
                 <label [for]="'labels-' + category().id" class="form-label">Etiqueta</label>
                 <select class="form-select" [id]="'labels-' + category().id" name="labels" ngModel #labels="ngModel" aria-label="Default select example">
-                  <option selected>None</option>
                   <option value="Vegan">Vegan</option>
                   <option value="Vegetarian">Vegetarian</option>
                   <option value="GlutenFree">GlutenFree</option>
@@ -97,7 +93,7 @@
                 <label [for]="'recommendedFor-' + category().id" class="form-label">Cantidad de personas
                   recomendada</label>
                 <input [id]="'recommendedFor-' + category().id" class="form-control" name="recommendedFor" ngModel
-                  type="number" #recommendedFor="ngModel" min="1" required>
+                  type="number" #recommendedFor="ngModel" min="1">
               </div>
               <div>
                 <label [for]="'discount-' + category().id" class="form-label">Descuento (%)</label>

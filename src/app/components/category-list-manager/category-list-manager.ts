@@ -15,12 +15,13 @@ import { NewProductType } from '../../interfaces/products-types';
   styleUrl: './category-list-manager.scss',
 })
 export class CategoryListManager {
-  
+
   barManager = inject(BarManager)
   category = input.required<CategoriesType>();
   productService = inject(ProductService)
   categoryService = inject(CategoryService)
   editCategoryForm = viewChild<NgForm>('editCategoryForm');
+  newProductForm = viewChild<NgForm>('newProductForm')
 
   async ngOnInit() {
     if (this.barManager.id) {
@@ -44,21 +45,20 @@ export class CategoryListManager {
       denyButtonText: "Borrar",
     }).then((result) => {
       if (result.isDenied) {
-        this.categoryService.deleteCategory(this.category().id).then(() =>
-        {Swal.fire("Borrado con exito");});
+        this.categoryService.deleteCategory(this.category().id).then(() => { Swal.fire("Borrado con exito"); });
       }
     });
   }
 
-  async createProduct(form: NgForm){
+  async createProduct(form: NgForm) {
     const productData: NewProductType = {
       name: form.value.name,
       description: form.value.description,
       price: form.value.price,
       categoryId: this.category().id,
       featured: form.value.featured || false,
-      labels: [form.value.labels],
-      recommendedFor: form.value.recommendedFor ,
+      labels: form.value.labels === null ? ['None'] : [form.value.labels],
+      recommendedFor: form.value.recommendedFor || 1,
       discount: form.value.discount || 0,
       hasHappyHour: form.value.hasHappyHour || false,
     }
@@ -66,11 +66,11 @@ export class CategoryListManager {
     await this.productService.createProduct(productData);
   }
 
-  async editCategory(form: NgForm){
-      const categoryData: CategoriesType = {
-        id: this.category().id,
-        name: form.value.name
-      }
-      await this.categoryService.editCategory(categoryData);
+  async editCategory(form: NgForm) {
+    const categoryData: CategoriesType = {
+      id: this.category().id,
+      name: form.value.name
     }
+    await this.categoryService.editCategory(categoryData);
+  }
 }
