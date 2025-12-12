@@ -58,7 +58,7 @@
                         <div class="mb-2">
                             <label for="password" class="form-label">Contraseña</label>
                             <input id="password" class="form-control" name="password" type="password" ngModel
-                                #password="ngModel" minlength="4" autocomplete="current-password">
+                                #password="ngModel" minlength="4" required="true" autocomplete="current-password">
                             @if (password.invalid && !password.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar una contraseña de al menos 4 caracteres.</p>
                             }
@@ -66,12 +66,12 @@
                         <div>
                             <label for="password2" class="form-label">Repite la contraseña</label>
                             <input id="password2" class="form-control" name="password2" type="password" ngModel
-                                #password2="ngModel" minlength="4" autocomplete="new-password">
+                                #password2="ngModel" minlength="4" required="true" autocomplete="new-password">
                             @if (password.invalid && !password.pristine) {
                             <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
                             }
                         </div>
-                        <button class="btn btn-dark my-4">Crear cuenta</button>
+                        <button class="btn btn-dark my-4" [disabled]="registerForm.invalid">Crear cuenta</button>
                         @if(isLoading){
                         <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"><span
                                 class="sr-only"></span></span>

@@ -26,12 +26,12 @@
                         <div>
                             <label for="password" class="form-label">Contraseña</label>
                             <input id="password" class="form-control" name="password" type="password" ngModel
-                                #password="ngModel" minlength="4" autocomplete="current-password">
+                                #password="ngModel" minlength="4" required="true" autocomplete="current-password">
                             @if (password.invalid && !password.pristine) {
                             <p class="text-danger fs-6 mt-2">Debe colocar una contraseña de al menos 4 caracteres.</p>
                             }
                         </div>
-                        <button class="btn btn-dark my-4">Entrar</button>
+                        <button class="btn btn-dark my-4" [disabled]="loginForm.invalid">Entrar</button>
                         @if(isLoading){
                         <span class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true"><span
                                 class="sr-only"></span></span>

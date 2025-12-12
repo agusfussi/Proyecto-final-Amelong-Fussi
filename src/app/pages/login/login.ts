@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth-service';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +14,7 @@ export class Login {
   authService = inject(AuthService);
   isLoading = false;
 
-  async login(form: any) {
-    this.errorLogin = false;
-    if (!form.value.restaurantName || !form.value.password) {
-      this.errorLogin = true;
-      return
-    }
+  async login(form: NgForm) {
     this.isLoading = true;
     await this.authService.login(form.value);
     this.isLoading = false;

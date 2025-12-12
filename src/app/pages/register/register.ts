@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { UsersService } from '../../services/users-service';
 import { Router, RouterModule } from '@angular/router';
 
@@ -15,9 +15,9 @@ export class Register {
   isLoading = false;
   router = inject(Router);
 
-  async register(form: any) {
+  async register(form: NgForm) {
     this.errorRegister = false;
-    if (!form.value.restaurantName || !form.value.password || !form.value.address || !form.value.phoneNumber || !form.value.password2 || !form.value.firstName || !form.value.lastName || form.password !== form.password2) {
+    if (form.value.password !== form.value.password2) {
       this.errorRegister = true;
       return
     }
