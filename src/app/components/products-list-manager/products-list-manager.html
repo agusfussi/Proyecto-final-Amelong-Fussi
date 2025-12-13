@@ -1,87 +1,90 @@
-<div class="my-2 d-flex align-items-start">
-    <p class="m-0 col-12">{{ products().name }}</p>
-    <!-- ///////////////////////////////////// -->
-    <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
-        [attr.data-bs-target]="'#modalEditProduct-' + products().id">Editar</button>
-
-    <div class="modal fade" [id]="'modalEditProduct-' + products().id" data-bs-backdrop="static"
-        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita el producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form #editProductForm="ngForm">
-                        <div>
-                            <label [for]="'name-' + products().id" class="form-label">Nombre</label>
-                            <input [id]="'name-' + products().id" class="form-control" name="name" required ngModel
-                                type="text" #name="ngModel">
-                            @if (name.invalid && !name.pristine) {
-                            <p class="text-danger fs-6 mt-2">Debe colocar un nombre de producto.</p>
-                            }
-                        </div>
-                        <div>
-                            <label [for]="'description-' + products().id" class="form-label">Descripción</label>
-                            <input [id]="'description-' + products().id" class="form-control" name="description"
-                                required ngModel type="text" #description="ngModel">
-                            @if (description.invalid && !description.pristine) {
-                            <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>
-                            }
-                        </div>
-                        <div>
-                            <label [for]="'price-' + products().id" class="form-label">Precio</label>
-                            <input [id]="'price-' + products().id" class="form-control" name="price" required ngModel
-                                type="number" #price="ngModel">
-                            @if (price.invalid && !price.pristine) {
-                            <p class="text-danger fs-6 mt-2">Debe colocar un precio.</p>
-                            }
-                        </div>
-                        <div class="form-check">
-                            <label [for]="'featured-' + products().id" class="form-check-label">Destacado</label>
-                            <input [id]="'featured-' + products().id" class="form-check-input" name="featured" ngModel
-                                type="checkbox" #featured="ngModel">
-                        </div>
-                        <div>
-                            <label [for]="'labels-' + products().id" class="form-label">Etiqueta</label>
-                            <select class="form-select" [id]="'labels-' + products().id" name="labels" ngModel
-                                #labels="ngModel" aria-label="Default select example">
-                                <option selected value="None">None</option>
-                                <option value="Vegan">Vegan</option>
-                                <option value="Vegetarian">Vegetarian</option>
-                                <option value="GlutenFree">GlutenFree</option>
-                                <option value="Spicy">Spicy</option>
-                                <option value="SugarFree">SugarFree</option>
-                                <option value="Kids">Kids</option>
-                                <option value="Shareable">Shareable</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label [for]="'recommendedFor-' + products().id" class="form-label">Recomendado para</label>
-                            <input [id]="'recommendedFor-' + products().id" class="form-control" name="recommendedFor" ngModel
-                                type="number" #recommendedFor="ngModel">
-                        </div>
-                        <div>
-                            <label [for]="'discount-' + products().id" class="form-label">Descuento (%)</label>
-                            <input [id]="'discount-' + products().id" class="form-control" name="discount" ngModel
-                                type="number" #discount="ngModel">
-                        </div>
-                        <div class="form-check">
-                            <label [for]="'hasHappyHour-' + products().id" class="form-check-label">Happy Hour</label>
-                            <input [id]="'hasHappyHour-' + products().id" class="form-check-input" name="hasHappyHour" ngModel
-                                type="checkbox" #hasHappyHour="ngModel">
-                        </div>
-                        <div>
-                            <button class="btn btn-dark mt-2" data-bs-dismiss="modal"
-                                [disabled]="editProductForm.invalid"
-                                (click)="editProduct(editProductForm)">Aceptar</button>
-                        </div>
-                    </form>
+<div class="my-2 d-flex justify-content-between">
+    <p class="m-0 col-6">{{ products().name }}</p>
+    <div class="d-flex justify-content-evenly col-6">
+        <button class="btn btn-outline-secondary " data-bs-toggle="modal"
+            [attr.data-bs-target]="'#modalEditProduct-' + products().id">Editar</button>
+        <!-- ///////////////////////////////////// -->
+        <div class="modal fade" [id]="'modalEditProduct-' + products().id" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edita el producto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form #editProductForm="ngForm">
+                            <div>
+                                <label [for]="'name-' + products().id" class="form-label">Nombre</label>
+                                <input [id]="'name-' + products().id" class="form-control" name="name" required ngModel
+                                    type="text" #name="ngModel">
+                                @if (name.invalid && !name.pristine) {
+                                <p class="text-danger fs-6 mt-2">Debe colocar un nombre de producto.</p>
+                                }
+                            </div>
+                            <div>
+                                <label [for]="'description-' + products().id" class="form-label">Descripción</label>
+                                <input [id]="'description-' + products().id" class="form-control" name="description"
+                                    required ngModel type="text" #description="ngModel">
+                                @if (description.invalid && !description.pristine) {
+                                <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>
+                                }
+                            </div>
+                            <div>
+                                <label [for]="'price-' + products().id" class="form-label">Precio</label>
+                                <input [id]="'price-' + products().id" class="form-control" name="price" required
+                                    ngModel type="number" #price="ngModel">
+                                @if (price.invalid && !price.pristine) {
+                                <p class="text-danger fs-6 mt-2">Debe colocar un precio.</p>
+                                }
+                            </div>
+                            <div class="form-check">
+                                <label [for]="'featured-' + products().id" class="form-check-label">Destacado</label>
+                                <input [id]="'featured-' + products().id" class="form-check-input" name="featured"
+                                    ngModel type="checkbox" #featured="ngModel">
+                            </div>
+                            <div>
+                                <label [for]="'labels-' + products().id" class="form-label">Etiqueta</label>
+                                <select class="form-select" [id]="'labels-' + products().id" name="labels" ngModel
+                                    #labels="ngModel" aria-label="Default select example">
+                                    <option selected value="None">None</option>
+                                    <option value="Vegan">Vegan</option>
+                                    <option value="Vegetarian">Vegetarian</option>
+                                    <option value="GlutenFree">GlutenFree</option>
+                                    <option value="Spicy">Spicy</option>
+                                    <option value="SugarFree">SugarFree</option>
+                                    <option value="Kids">Kids</option>
+                                    <option value="Shareable">Shareable</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label [for]="'recommendedFor-' + products().id" class="form-label">Recomendado
+                                    para</label>
+                                <input [id]="'recommendedFor-' + products().id" class="form-control"
+                                    name="recommendedFor" ngModel type="number" #recommendedFor="ngModel">
+                            </div>
+                            <div>
+                                <label [for]="'discount-' + products().id" class="form-label">Descuento (%)</label>
+                                <input [id]="'discount-' + products().id" class="form-control" name="discount" ngModel
+                                    type="number" #discount="ngModel">
+                            </div>
+                            <div class="form-check">
+                                <label [for]="'hasHappyHour-' + products().id" class="form-check-label">Happy
+                                    Hour</label>
+                                <input [id]="'hasHappyHour-' + products().id" class="form-check-input"
+                                    name="hasHappyHour" ngModel type="checkbox" #hasHappyHour="ngModel">
+                            </div>
+                            <div>
+                                <button class="btn btn-dark mt-2" data-bs-dismiss="modal"
+                                    [disabled]="editProductForm.invalid"
+                                    (click)="editProduct(editProductForm)">Aceptar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- ///////////////////////////////////////// -->
+        <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar producto</button>
     </div>
-    <!-- ///////////////////////////////////////// -->
-    <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar producto</button>
 </div>

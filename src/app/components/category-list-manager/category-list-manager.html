@@ -117,7 +117,7 @@
     @if (this.barManager.id) {
     @for (product of productService.productos[this.barManager.id]; track $index) {
     @if (category().id === product.categoryId){
-    <div class="column col-5">
+    <div class="column col-12">
       <app-products-list-manager [products]="product"></app-products-list-manager>
     </div>
     }
