@@ -1,9 +1,10 @@
 <div class="my-2 row d-flex align-items-start">
   <p class="col-3 m-0">{{ category().name }}</p>
+
   <div class="col-4">
     <button class="btn btn-outline-secondary mx-2" data-bs-toggle="modal"
       [attr.data-bs-target]="'#modalEditCategory-' + category().id">Editar</button>
-
+    <!-- ///////////////////////////////////// -->
     <div class="modal fade" [id]="'modalEditCategory-' + category().id" data-bs-backdrop="static"
       data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -13,7 +14,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form #editCategoryForm="ngForm">
+            <form #editCategoryForm="ngForm" (ngSubmit)="editCategory(editCategoryForm)">
               <div>
                 <label for="name" class="form-label">Nombre</label>
                 <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
@@ -22,8 +23,8 @@
                 }
               </div>
               <div>
-                <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="editCategoryForm.invalid"
-                  (click)="editCategory(editCategoryForm)">Aceptar</button>
+                <button class="btn btn-dark mt-2" data-bs-dismiss="modal"
+                  [disabled]="editCategoryForm.invalid">Aceptar</button>
               </div>
             </form>
           </div>
@@ -33,11 +34,12 @@
     <!-- ///////////////////////////////////// -->
     <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar categoría</button>
   </div>
-  
+
   <div class="col-5">
     <button class="btn btn-outline-secondary" data-bs-toggle="modal"
       [attr.data-bs-target]="'#modalNewProduct-' + category().id" (click)="newProductForm.reset()">+ Nuevo
       producto</button>
+    <!-- ///////////////////////////////////// -->
     <div class="modal fade" [id]="'modalNewProduct-' + category().id" data-bs-backdrop="static" data-bs-keyboard="false"
       tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
@@ -47,7 +49,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form #newProductForm="ngForm">
+            <form #newProductForm="ngForm" (ngSubmit)="createProduct(newProductForm)">
               <div>
                 <label [for]="'name-' + category().id" class="form-label">Nombre</label>
                 <input [id]="'name-' + category().id" class="form-control" name="name" required ngModel type="text"
@@ -79,7 +81,8 @@
               </div>
               <div>
                 <label [for]="'labels-' + category().id" class="form-label">Etiqueta</label>
-                <select class="form-select" [id]="'labels-' + category().id" name="labels" ngModel #labels="ngModel" aria-label="Default select example">
+                <select class="form-select" [id]="'labels-' + category().id" name="labels" ngModel #labels="ngModel"
+                  aria-label="Default select example">
                   <option value="Vegan">Vegan</option>
                   <option value="Vegetarian">Vegetarian</option>
                   <option value="GlutenFree">GlutenFree</option>
@@ -97,7 +100,7 @@
               </div>
               <div>
                 <label [for]="'discount-' + category().id" class="form-label">Descuento (%)</label>
-                <input [id]="'discount-' + category().id" class="form-control" name="discount" ngModel type="number"
+                <input [id]="'discount-' + category().id" class="form-control" min="0" max="100" name="discount" ngModel type="number"
                   #discount="ngModel">
               </div>
               <div class="form-check">
@@ -106,14 +109,15 @@
                   type="checkbox" #hasHappyHour="ngModel">
               </div>
               <div>
-                <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="newProductForm.invalid"
-                  (click)="createProduct(newProductForm)">Crear</button>
+                <button class="btn btn-dark mt-2" data-bs-dismiss="modal"
+                  [disabled]="newProductForm.invalid">Crear</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+    <!-- ///////////////////////////////////// -->
     @if (this.barManager.id) {
     @for (product of productService.productos[this.barManager.id]; track $index) {
     @if (category().id === product.categoryId){

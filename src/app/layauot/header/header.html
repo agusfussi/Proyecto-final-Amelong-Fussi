@@ -1,13 +1,10 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-lg px-4">
     <a class="navbar-brand fw-bold" routerLink=""><img class="rounded-4 height-low w-auto" src="favicon.ico"
-        alt="logo"><span class="ms-2">MenuAF</span></a>
-    <div class="ms-auto d-flex gap-3">
+        alt="logo"><span class="ms-2 d-none d-sm-inline">MenuAF</span></a>
+    <div class="ms-auto d-flex gap-1">
       <a class="btn btn-outline-dark" routerLink="/register">Registrarse</a>
       <a class="btn btn-dark" routerLink="/login">Iniciar sesión</a>
-      <button (click)="toggleTheme()" class="btn btn-secondary">
-        Tema
-      </button>
     </div>
   </nav>
 </header>

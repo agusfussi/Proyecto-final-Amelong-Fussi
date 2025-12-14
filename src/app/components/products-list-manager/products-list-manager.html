@@ -1,5 +1,6 @@
 <div class="my-2 d-flex justify-content-between">
     <p class="m-0 col-6">{{ products().name }}</p>
+
     <div class="d-flex justify-content-evenly col-6">
         <button class="btn btn-outline-secondary " data-bs-toggle="modal"
             [attr.data-bs-target]="'#modalEditProduct-' + products().id">Editar</button>
@@ -13,7 +14,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form #editProductForm="ngForm">
+                        <form #editProductForm="ngForm" (ngSubmit)="editProduct(editProductForm)">
                             <div>
                                 <label [for]="'name-' + products().id" class="form-label">Nombre</label>
                                 <input [id]="'name-' + products().id" class="form-control" name="name" required ngModel
@@ -47,7 +48,6 @@
                                 <label [for]="'labels-' + products().id" class="form-label">Etiqueta</label>
                                 <select class="form-select" [id]="'labels-' + products().id" name="labels" ngModel
                                     #labels="ngModel" aria-label="Default select example">
-                                    <option selected value="None">None</option>
                                     <option value="Vegan">Vegan</option>
                                     <option value="Vegetarian">Vegetarian</option>
                                     <option value="GlutenFree">GlutenFree</option>
@@ -65,7 +65,7 @@
                             </div>
                             <div>
                                 <label [for]="'discount-' + products().id" class="form-label">Descuento (%)</label>
-                                <input [id]="'discount-' + products().id" class="form-control" name="discount" ngModel
+                                <input [id]="'discount-' + products().id" class="form-control" min="0" max="100" name="discount" ngModel
                                     type="number" #discount="ngModel">
                             </div>
                             <div class="form-check">
@@ -76,8 +76,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-dark mt-2" data-bs-dismiss="modal"
-                                    [disabled]="editProductForm.invalid"
-                                    (click)="editProduct(editProductForm)">Aceptar</button>
+                                    [disabled]="editProductForm.invalid">Aceptar</button>
                             </div>
                         </form>
                     </div>
@@ -85,6 +84,7 @@
             </div>
         </div>
         <!-- ///////////////////////////////////////// -->
+
         <button class="btn btn-outline-secondary" (click)="openDeleteModal()">Eliminar producto</button>
     </div>
 </div>

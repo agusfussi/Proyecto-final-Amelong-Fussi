@@ -88,8 +88,7 @@
 
   <div class="mb-4">
     <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalNewCategory"
-      (click)="newCategoryForm.reset()">+ Nueva
-      categoría</button>
+      (click)="newCategoryForm.reset()">+ Nueva categoría</button>
   </div>
 
   <div class="modal fade" id="modalNewCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -101,7 +100,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form #newCategoryForm="ngForm">
+          <form #newCategoryForm="ngForm" (ngSubmit)="createCategory(newCategoryForm)">
             <div>
               <label for="name" class="form-label">Nombre</label>
               <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
@@ -110,8 +109,7 @@
               }
             </div>
             <div>
-              <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="newCategoryForm.invalid"
-                (click)="createCategory(newCategoryForm)">Crear</button>
+              <button class="btn btn-dark mt-2" data-bs-dismiss="modal" [disabled]="newCategoryForm.invalid">Crear</button>
             </div>
           </form>
         </div>

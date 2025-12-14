@@ -6,7 +6,12 @@
     </button>
     <div class="collapse mt-3" [id]="'category-' + category().id">
         @for (products of productService.productos[this.menuService.id()]; track $index) {
-        @if (products.categoryId === category().id) {
+        @if (products.categoryId === category().id && products.featured) {
+        <app-products-list-items [products]="products"></app-products-list-items>
+        }
+        }
+        @for (products of productService.productos[this.menuService.id()]; track $index) {
+        @if (products.categoryId === category().id && !products.featured) {
         <app-products-list-items [products]="products"></app-products-list-items>
         }
         }

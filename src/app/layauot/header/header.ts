@@ -9,23 +9,4 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './header.scss',
 })
 export class Header {
-  ngOnInit() {
-    if (typeof window !== 'undefined' && window.localStorage)  {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      document.body.classList.add('dark-theme');
-    }
-  }
-    
-  }
-
-  toggleTheme() {
-    const body = document.body;
-    body.classList.toggle('dark-theme');
-
-    localStorage.setItem(
-      'theme',
-      body.classList.contains('dark-theme') ? 'dark' : 'light'
-    );
-  }
 }
