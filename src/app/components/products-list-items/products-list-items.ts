@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product-service';
 import { ProductType } from '../../interfaces/products-types';
 import { CategoriesType } from '../../interfaces/categories-types';
 import { CategoryListItem } from '../category-list-item/category-list-item';
+import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-products-list-items',
@@ -11,6 +12,11 @@ import { CategoryListItem } from '../category-list-item/category-list-item';
   styleUrl: './products-list-items.scss',
 })
 export class ProductsListItems {
-  menuService = inject(CategoryListItem)
+  menuService = inject(CategoryListItem);
+  cartService = inject(CartService);
   products = input.required<ProductType>();
+
+  addToCart (product: ProductType) {
+    this.cartService.agregar(product)
+  }
 }
