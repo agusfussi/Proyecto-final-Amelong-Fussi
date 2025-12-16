@@ -8,50 +8,50 @@ import { AuthType } from '../interfaces/auth-type';
 export class AuthService {
   router = inject(Router);
   token: string | null = null;
-constructor() {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      this.token = localStorage.getItem('token');
-      if (this.token) {
-        this.id = this.getUserId();
-      }
+  id: number | undefined = undefined;
+
+  constructor() {
+    this.token = localStorage.getItem('token');
+    if (this.token) {
+      this.id = this.getUserId();
     }
   }
-  id: number | undefined = undefined;
-////////////////////////////////////////////
-  async login(loginData: AuthType){
-    const res = await fetch("https://w370351.ferozo.com/api/Authentication/login",{
+
+  ////////////////////////////////////////////
+  async login(loginData: AuthType) {
+    const res = await fetch("https://w370351.ferozo.com/api/Authentication/login", {
       method: "POST",
-      headers: {"Content-type": "application/json"},
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify(loginData)
     })
-    if(res.ok){
+    if (res.ok) {
       const obj = await res.json();
       this.token = obj.token;
-      localStorage.setItem("token",this.token!);
+      localStorage.setItem("token", this.token!);
       this.id = this.getUserId()
-      this.router.navigate(["/",this.id])
+      this.router.navigate(["/", this.id])
     }
   }
   getToken() {
     return this.token;
   }
-////////////////////////////////////////////
-  parseJwt (token: string) {
+  ////////////////////////////////////////////
+  parseJwt(token: string) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
     return JSON.parse(jsonPayload);
   }
-////////////////////////////////////////////
+  ////////////////////////////////////////////
   getUserId() {
     if (!this.token) return;
     return parseInt(this.parseJwt(this.token).sub);
   }
-////////////////////////////////////////////
-  logout(){
+  ////////////////////////////////////////////
+  logout() {
     this.token = null;
     localStorage.removeItem("token")
     this.router.navigate(["/"])

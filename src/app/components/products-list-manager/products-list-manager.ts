@@ -34,7 +34,6 @@ export class ProductsListManager implements OnInit {
   }
 
   async editProduct(form: NgForm) {
-    console.log(form.value);
     const originalHappyHour = this.products().hasHappyHour;
     const newHappyHour = form.value.hasHappyHour;
     const productData: ProductType = {
@@ -44,7 +43,7 @@ export class ProductsListManager implements OnInit {
       price: form.value.price,
       categoryId: this.products().categoryId,
       featured: form.value.featured || false,
-      labels: form.value.labels,
+      labels: [form.value.labels],
       recommendedFor: form.value.recommendedFor || 1,
       discount: form.value.discount || 0,
       hasHappyHour: originalHappyHour,
@@ -55,7 +54,6 @@ export class ProductsListManager implements OnInit {
     if (newHappyHour !== originalHappyHour) {
       await this.productService.setHappyHour(this.products().id);
     }
-    console.log(productData);
   }
 
   async setHappyHour() {

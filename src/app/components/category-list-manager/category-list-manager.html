@@ -52,7 +52,7 @@
             <form #newProductForm="ngForm" (ngSubmit)="createProduct(newProductForm)">
               <div>
                 <label [for]="'name-' + category().id" class="form-label">Nombre</label>
-                <input [id]="'name-' + category().id" class="form-control" name="name" required ngModel type="text"
+                <input [id]="'name-' + category().id" class="form-control" name="name" required maxlength="30" ngModel type="text"
                   #name="ngModel">
                 @if (name.invalid && !name.pristine) {
                 <p class="text-danger fs-6 mt-2">Debe colocar un nombre de producto.</p>
@@ -60,7 +60,7 @@
               </div>
               <div>
                 <label [for]="'description-' + category().id" class="form-label">Descripción</label>
-                <input [id]="'description-' + category().id" class="form-control" name="description" required ngModel
+                <input [id]="'description-' + category().id" class="form-control" name="description" required maxlength="50" ngModel
                   type="text" #description="ngModel">
                 @if (description.invalid && !description.pristine) {
                 <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>
@@ -83,6 +83,7 @@
                 <label [for]="'labels-' + category().id" class="form-label">Etiqueta</label>
                 <select class="form-select" [id]="'labels-' + category().id" name="labels" ngModel #labels="ngModel"
                   aria-label="Default select example">
+                  <option value="None">None</option>
                   <option value="Vegan">Vegan</option>
                   <option value="Vegetarian">Vegetarian</option>
                   <option value="GlutenFree">GlutenFree</option>
