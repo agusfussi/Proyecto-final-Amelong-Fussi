@@ -17,7 +17,6 @@ export class CartService {
   agregar(producto: ProductType) {
     this.items.push(producto)
     this.guardar();
-    console.log(this.items)
   }
 
   eliminar(producto: ProductType) {

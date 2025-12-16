@@ -4,6 +4,7 @@ import { ProductType } from '../../interfaces/products-types';
 import { CategoriesType } from '../../interfaces/categories-types';
 import { CategoryListItem } from '../category-list-item/category-list-item';
 import { CartService } from '../../services/cart-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products-list-items',
@@ -23,5 +24,6 @@ export class ProductsListItems {
       restaurantName: restaurantName
     }
     this.cartService.agregar(item)
+    Swal.fire("¡Producto agregado al carrito!");
   }
 }

@@ -67,7 +67,6 @@ export class CategoryListManager {
       userId: this.id!,
       categoryName: this.category().name,
     }
-    console.log(productData)
     await this.productService.createProduct(productData);
   }
 
