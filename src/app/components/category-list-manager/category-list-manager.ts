@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import { CategoryService } from '../../services/category-service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NewProductType } from '../../interfaces/products-types';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-category-list-manager',
@@ -21,7 +22,9 @@ export class CategoryListManager {
   productService = inject(ProductService)
   categoryService = inject(CategoryService)
   editCategoryForm = viewChild<NgForm>('editCategoryForm');
-  newProductForm = viewChild<NgForm>('newProductForm')
+  newProductForm = viewChild<NgForm>('newProductForm');
+  auth = inject(AuthService)
+  id = this.auth.getUserId()
 
   async ngOnInit() {
     if (this.barManager.id) {
@@ -61,6 +64,8 @@ export class CategoryListManager {
       recommendedFor: form.value.recommendedFor || 1,
       discount: form.value.discount || 0,
       hasHappyHour: form.value.hasHappyHour || false,
+      userId: this.id!,
+      categoryName: this.category().name,
     }
     console.log(productData)
     await this.productService.createProduct(productData);

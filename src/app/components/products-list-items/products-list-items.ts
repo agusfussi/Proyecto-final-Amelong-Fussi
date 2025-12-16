@@ -17,6 +17,11 @@ export class ProductsListItems {
   products = input.required<ProductType>();
 
   addToCart (product: ProductType) {
-    this.cartService.agregar(product)
+    const restaurantName = this.menuService.menuService.restaurantName()
+    const item: ProductType = {
+      ...product,
+      restaurantName: restaurantName
+    }
+    this.cartService.agregar(item)
   }
 }

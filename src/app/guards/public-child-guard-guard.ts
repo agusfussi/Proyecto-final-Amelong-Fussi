@@ -7,7 +7,7 @@ export const publicChildGuardGuard: CanActivateChildFn = (childRoute, state) => 
   const router = inject(Router)
 
   if(auth.token){
-    const managerPath = router.parseUrl("bar-manager");
+    const managerPath = router.parseUrl(":id");
       return new RedirectCommand(managerPath, {
         skipLocationChange: true,
       });

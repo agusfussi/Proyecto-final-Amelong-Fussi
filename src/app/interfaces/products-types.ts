@@ -1,5 +1,5 @@
 export interface ProductType{
-  id: number
+  id: number,
   name: string,
   description: string,
   price: number,
@@ -8,7 +8,10 @@ export interface ProductType{
   labels: string[],
   recommendedFor: number,
   discount: number,
-  hasHappyHour: boolean
+  hasHappyHour: boolean,
+  userId: number,
+  categoryName: string,
+  restaurantName?: string
 }
 export type NewProductType = Omit<ProductType,"id">
 

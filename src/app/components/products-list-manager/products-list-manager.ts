@@ -5,6 +5,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ProductService } from '../../services/product-service';
 import { CategoryListManager } from '../category-list-manager/category-list-manager';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth-service';
+import { producerAccessed } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-products-list-manager',
@@ -46,6 +48,8 @@ export class ProductsListManager implements OnInit {
       recommendedFor: form.value.recommendedFor || 1,
       discount: form.value.discount,
       hasHappyHour: originalHappyHour,
+      userId: this.products().userId,
+      categoryName: this.products().categoryName,
     }
     await this.productService.editProduct(productData);
     if (newHappyHour !== originalHappyHour) {
