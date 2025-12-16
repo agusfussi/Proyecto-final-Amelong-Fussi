@@ -16,7 +16,6 @@ export class Register {
   router = inject(Router);
 
   async register(form: NgForm) {
-    this.errorRegister = false;
     if (form.value.password !== form.value.password2) {
       this.errorRegister = true;
       return

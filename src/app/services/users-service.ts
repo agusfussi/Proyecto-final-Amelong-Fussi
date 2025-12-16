@@ -26,7 +26,6 @@ export class UsersService {
     const user = await res.json()
     return user
   }
-  //consultar el tema de tipo de dato undefinied del id (lo hice para que me deje llamar a la funcion en logged header)
   /////////////////////// obtener restaurentes(usuarios)
   async getUsers() {
     const res = await fetch(`https://w370351.ferozo.com/api/users`, {

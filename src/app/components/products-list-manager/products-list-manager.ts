@@ -46,7 +46,7 @@ export class ProductsListManager implements OnInit {
       featured: form.value.featured || false,
       labels: form.value.labels,
       recommendedFor: form.value.recommendedFor || 1,
-      discount: form.value.discount,
+      discount: form.value.discount || 0,
       hasHappyHour: originalHappyHour,
       userId: this.products().userId,
       categoryName: this.products().categoryName,

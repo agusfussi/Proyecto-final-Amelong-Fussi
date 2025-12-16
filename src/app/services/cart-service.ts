@@ -22,6 +22,7 @@ export class CartService {
 
   eliminar(producto: ProductType) {
     this.items = this.items.filter(prod => prod != producto)
+    this.guardar()
   }
  
   limpiar() {
