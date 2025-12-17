@@ -9,8 +9,8 @@ export interface ProductType{
   recommendedFor: number,
   discount: number,
   hasHappyHour: boolean,
-  userId: number,
-  categoryName: string,
+  userId?: number,
+  categoryName?: string,
   restaurantName?: string
 }
 export type NewProductType = Omit<ProductType,"id">

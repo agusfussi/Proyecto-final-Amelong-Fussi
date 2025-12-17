@@ -1,6 +1,6 @@
 import { Component, inject, input, OnInit, viewChild } from '@angular/core';
 import { BarManager } from '../../pages/bar-manager/bar-manager';
-import { ProductType } from '../../interfaces/products-types';
+import { NewProductType, ProductType } from '../../interfaces/products-types';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ProductService } from '../../services/product-service';
 import { CategoryListManager } from '../category-list-manager/category-list-manager';
@@ -26,7 +26,7 @@ export class ProductsListManager implements OnInit {
       description: this.products().description,
       price: this.products().price,
       featured: this.products().featured,
-      labels: this.products().labels,
+      labels: this.products().labels[0],
       recommendedFor: this.products().recommendedFor,
       discount: this.products().discount,
       hasHappyHour: this.products().hasHappyHour,
@@ -43,12 +43,10 @@ export class ProductsListManager implements OnInit {
       price: form.value.price,
       categoryId: this.products().categoryId,
       featured: form.value.featured || false,
-      labels: [form.value.labels],
+      labels: form.value.labels === null ? ['None'] : [form.value.labels],
       recommendedFor: form.value.recommendedFor || 1,
       discount: form.value.discount || 0,
       hasHappyHour: originalHappyHour,
-      userId: this.products().userId,
-      categoryName: this.products().categoryName,
     }
     await this.productService.editProduct(productData);
     if (newHappyHour !== originalHappyHour) {

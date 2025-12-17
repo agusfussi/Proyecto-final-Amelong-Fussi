@@ -68,8 +68,8 @@ export class ProductService {
     }
   }
 ////////////////////////////////////////////
-  async editProduct(productData: ProductType) {
-    const res = await fetch(`https://w370351.ferozo.com/api/products/${productData.id}`,
+  async editProduct({ id, ...productData }: ProductType) {
+    const res = await fetch(`https://w370351.ferozo.com/api/products/${id}`,
       {
         method: "PUT",
         headers: {
@@ -81,8 +81,8 @@ export class ProductService {
     );
     if (!res.ok) {return false}
       this.productos[this.authService.getUserId()!] = this.productos[this.authService.getUserId()!].map(product => {
-        if (product.id === productData.id) {
-          return productData;
+        if (product.id === id) {
+          return { ...productData, id };
         }
         return product;
       });
@@ -104,7 +104,7 @@ export class ProductService {
   async setHappyHour(id: number) {
     const res = await fetch(`https://w370351.ferozo.com/api/products/${id}/happyHour`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           Authorization: "Bearer " + this.authService.token,
         },

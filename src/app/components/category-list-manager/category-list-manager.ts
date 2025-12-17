@@ -52,7 +52,8 @@ export class CategoryListManager {
         for (const producto of productsToDelete) {
           await this.productService.deleteProduct(producto.id);
         }
-        this.categoryService.deleteCategory(this.category().id).then(() => { Swal.fire("Borrado con éxito"); });
+        await this.categoryService.deleteCategory(this.category().id)
+        Swal.fire("Borrado con éxito");
       }
     });
   }
