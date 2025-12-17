@@ -26,7 +26,7 @@
                             <div>
                                 <label [for]="'description-' + products().id" class="form-label">Descripción</label>
                                 <input [id]="'description-' + products().id" class="form-control" name="description"
-                                    required maxlength="50" ngModel type="text" #description="ngModel">
+                                    required maxlength="100" ngModel type="text" #description="ngModel">
                                 @if (description.invalid && !description.pristine) {
                                 <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>
                                 }

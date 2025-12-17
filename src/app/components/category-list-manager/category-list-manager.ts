@@ -38,7 +38,7 @@ export class CategoryListManager {
     }
   }
 
-  openDeleteModal() {
+  async openDeleteModal() {
     Swal.fire({
       title: "¿Querés borrar la categoría con todos sus productos?",
       showDenyButton: true,
@@ -46,9 +46,13 @@ export class CategoryListManager {
       showConfirmButton: false,
       cancelButtonText: "Cancelar",
       denyButtonText: "Borrar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isDenied) {
-        this.categoryService.deleteCategory(this.category().id).then(() => { Swal.fire("Borrado con exito"); });
+        const productsToDelete = this.productService.productos[this.id!].filter(prod => prod.categoryId === this.category().id);
+        for (const producto of productsToDelete) {
+          await this.productService.deleteProduct(producto.id);
+        }
+        this.categoryService.deleteCategory(this.category().id).then(() => { Swal.fire("Borrado con éxito"); });
       }
     });
   }

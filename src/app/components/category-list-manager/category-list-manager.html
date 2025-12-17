@@ -17,7 +17,7 @@
             <form #editCategoryForm="ngForm" (ngSubmit)="editCategory(editCategoryForm)">
               <div>
                 <label for="name" class="form-label">Nombre</label>
-                <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
+                <input id="name" class="form-control" name="name" required maxlength="30" ngModel type="text" #name="ngModel">
                 @if (name.invalid && !name.pristine) {
                 <p class="text-danger fs-6 mt-2">Debe colocar un nombre de categoría.</p>
                 }
@@ -60,7 +60,7 @@
               </div>
               <div>
                 <label [for]="'description-' + category().id" class="form-label">Descripción</label>
-                <input [id]="'description-' + category().id" class="form-control" name="description" required maxlength="50" ngModel
+                <input [id]="'description-' + category().id" class="form-control" name="description" required maxlength="100" ngModel
                   type="text" #description="ngModel">
                 @if (description.invalid && !description.pristine) {
                 <p class="text-danger fs-6 mt-2">Debe colocar una descripción.</p>

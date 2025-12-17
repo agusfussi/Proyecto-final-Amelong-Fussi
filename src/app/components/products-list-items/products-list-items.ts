@@ -5,6 +5,7 @@ import { CategoriesType } from '../../interfaces/categories-types';
 import { CategoryListItem } from '../category-list-item/category-list-item';
 import { CartService } from '../../services/cart-service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-products-list-items',
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductsListItems {
   menuService = inject(CategoryListItem);
+  authService = inject(AuthService)
   cartService = inject(CartService);
   products = input.required<ProductType>();
 

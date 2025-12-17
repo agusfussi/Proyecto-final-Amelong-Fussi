@@ -105,7 +105,7 @@
           <form #newCategoryForm="ngForm" (ngSubmit)="createCategory(newCategoryForm)">
             <div>
               <label for="name" class="form-label">Nombre</label>
-              <input id="name" class="form-control" name="name" required ngModel type="text" #name="ngModel">
+              <input id="name" class="form-control" name="name" required ngModel maxlength="30" type="text" #name="ngModel">
               @if (name.invalid && !name.pristine) {
               <p class="text-danger fs-6 mt-2">Debe colocar un nombre de categoría.</p>
               }

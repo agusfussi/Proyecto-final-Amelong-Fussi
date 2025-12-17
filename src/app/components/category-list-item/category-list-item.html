@@ -1,18 +1,23 @@
 <div class="mb-4">
     <button
-        class="btn btn-outline-secondary bg-light-subtle border-2 border-warning-subtle text-dark fw-bold px-5 py-3 w-75 fs-5"
-        type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#category-' + category().id" aria-expanded="false" [attr.aria-controls]="'category-' + category().id">
+        class="btn btn-outline-secondary bg-light-subtle border-2 border-warning-subtle text-dark fw-bold px-5 py-3 col-12 col-md-10 col-lg-9 fs-5"
+        type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#category-' + category().id"
+        aria-expanded="false" [attr.aria-controls]="'category-' + category().id">
         {{ category().name }}
     </button>
-    <div class="collapse mt-3" [id]="'category-' + category().id">
+    <div class="collapse mt-3 row justify-content-center" [id]="'category-' + category().id">
         @for (products of productService.productos[this.menuService.id()]; track $index) {
         @if (products.categoryId === category().id && products.featured) {
-        <app-products-list-items [products]="products"></app-products-list-items>
+        <div class="col-12 col-md-8 col-lg-7">
+            <app-products-list-items [products]="products"></app-products-list-items>
+        </div>
         }
         }
         @for (products of productService.productos[this.menuService.id()]; track $index) {
         @if (products.categoryId === category().id && !products.featured) {
-        <app-products-list-items [products]="products"></app-products-list-items>
+        <div class="col-12 col-md-8 col-lg-7">
+            <app-products-list-items [products]="products"></app-products-list-items>
+        </div>
         }
         }
     </div>
